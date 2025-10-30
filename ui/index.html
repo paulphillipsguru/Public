@@ -9,6 +9,11 @@
     <meta name="author" content="Paul Phillips" />
     <meta name="robots" content="index, follow" />
     
+    <!-- Performance optimizations -->
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="prefetch" href="/manifest.json" />
+    
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Paul Phillips - Lead Software Engineer" />
     <meta property="og:description" content="Expert Lead Software Engineer specializing in .NET, Azure, and modern software architecture. Professional software development services." />
@@ -21,19 +26,31 @@
     <meta name="twitter:title" content="Paul Phillips - Lead Software Engineer" />
     <meta name="twitter:description" content="Expert Lead Software Engineer specializing in .NET, Azure, and modern software architecture." />
     
-    <!-- PWA Manifest -->
+    <!-- PWA Manifest - preload for performance -->
+    <link rel="preload" href="/manifest.json" as="fetch" crossorigin />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#2563eb" />
     
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
     
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts - preload for performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" />
+    </noscript>
     
-    <!-- Structured Data -->
-    <script type="application/ld+json">
+    <!-- Font Awesome for icons - preload for performance -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /></noscript>
+    
+    <!-- Structured Data - deferred to prevent blocking -->
+    <script type="application/ld+json" defer>
     {
       "@context": "https://schema.org",
       "@type": "Person",
@@ -61,6 +78,6 @@
   </head>
   <body>
     <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/main.ts" defer></script>
   </body>
 </html>
